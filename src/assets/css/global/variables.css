@@ -1,0 +1,17 @@
+:root{
+    /*cores*/
+    --primary-color: #007bff;
+    --secondary-color: #000000;
+    --white-color: #ffffff;
+    --grey-color: #d1d0d0;
+    --color-button: #00ce77;
+
+    /*animações*/
+    --ease-in-out: all 0.1s ease-in-out;
+
+
+    /*tamanhos de fontes*/
+    --p1: clamp(1rem, 1vw, 1.2rem);
+    --p2: clamp(2rem, 1vw, 2.2rem);
+    --p3: clamp(3rem, 1vw, 3.2rem);
+}

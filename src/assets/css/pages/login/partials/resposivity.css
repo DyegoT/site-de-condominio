@@ -1,0 +1,84 @@
+@media screen and (max-width: 1024px) {
+    .leftSection .loginContainer {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background: none;
+    }
+    
+    .leftSection .loginContainer .loginTitle {
+        font-size: var(--p3);
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+    }
+
+    .loginBtn {
+        display: flex;
+        align-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .rightSection {
+        display: none;
+    }
+
+    .leftSection {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .leftSection .loginContainer {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: none;
+    }
+
+    .leftSection .loginContainer .loginTitle {
+        font-size: var(--p3);
+        color: var(--primary-color);
+        margin-bottom: 30px;
+    }
+
+    .loginContainer .loginInput {
+        font-size: var(--p1);
+    }
+
+    .loginContainer .loginBtn {
+        font-size: var(--p1);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .leftSection {
+        height: 100%;
+    }
+
+    .loginContainer {
+        width: 90%;
+        padding: 20px;
+        background: none;
+    }
+
+    .loginContainer .loginTitle {
+        font-size: var(--p2);
+        margin-bottom: 30px;
+    }
+
+    .loginContainer .loginBtn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}

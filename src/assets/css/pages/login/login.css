@@ -1,0 +1,58 @@
+@import '../../global/global.css';
+@import './partials/right-section.css';
+@import './partials/left-section.css';
+@import './partials/imagens.css';
+@import './partials/resposivity.css';
+
+.mainContainer{
+    display: flex;
+    height: 100vh;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    padding: 30px;
+    border-radius: 30px;
+    border: 3px solid var(--white-color);
+    box-shadow: 0 0 40px rgba(0, 123, 255, 0.5);
+    margin: 20px 30px;
+}
+
+.loginTitle{
+    font-size: var(--p3);
+    color: var(--white-color);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.loginInput{
+    font-size: var(--p1);
+    color: var(--black-color);
+}
+
+.loginForm label{
+    margin-top: 10px;
+    display: flex;
+    align-self: flex-start;
+    color: var(--white-color);
+    font-size: var(--p1);
+}
+
+.loginBtn{
+    margin-top: 20px;
+    font-size: var(--p2);
+    box-shadow: 0 0 30px rgba(0 209, 119, 0.2);
+}
