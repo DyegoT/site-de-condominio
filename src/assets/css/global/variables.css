@@ -5,7 +5,16 @@
     --white-color: #ffffff;
     --grey-color: #d1d0d0;
     --color-button: #00ce77;
-
+    --text-color: #343a40;
+    --card-bg: #ffffff;
+    --border-color: #e9ecef;
+    --hover-color: #0056b3;
+    --sidebar-bg: #343a40;
+    --sidebar-text-color: #ffffff;
+    --sidebar-hover: #495057; 
+    --active-link-bg: #0056b3;
+    --panel-border-color: #007bff;
+    
     /*animações*/
     --ease-in-out: all 0.1s ease-in-out;
 
