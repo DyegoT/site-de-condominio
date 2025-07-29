@@ -29,14 +29,10 @@
                         <span class="sidebar-title"><i class="fas fa-cog"></i> Administração</span>
                         <ul class="nested-menu">
                             <li><a href="#moradores" class="active"><i class="fas fa-users"></i> Moradores</a></li>
+                            <li><a href="#atas" class="active"><i class="fas fa-file-contract"></i>Atas e Assembleias</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <span class="sidebar-title"><i class="fas fa-users"></i> Moradores</span>
-                        <ul class="nested-menu">
-                            <li><a href="#atas">Atas e Assembleias</a></li>
-                        </ul>
-                    </li>
+                    
                 </ul>
             </nav>
         </aside>
@@ -51,7 +47,7 @@
                             <button id="cadastrar_morador" class="btn btn-primary"><i class="fas fa-user-plus"></i> Cadastrar</button>
                         </div>
                     </div>
-                    <div id="cadastro-popup" class="popup-overlay" style="display:none;">
+                    <div id="cadastro-popup-morador" class="popup-overlay" style="display:none;">
                         <div class="popup-content">
                             <h3>Cadastrar Morador</h3>
                             <form id="form-cadastro-morador">
@@ -75,7 +71,7 @@
 
                                 <div class="popup-actions">
                                     <button type="submit" class="btn btn-primary">Salvar</button>
-                                    <button type="button" id="fechar-popup" class="btn btn-outline-secondary">Cancelar</button>
+                                    <button type="button" id="fechar-popup-morador" class="btn btn-outline-secondary">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -179,8 +175,80 @@
                 </div>
             </section>
 
-            <section id="contas" class="content-section">
-                
+            <section id="atas" class="content-section">
+                <div class="atas-panel">
+                    <div class="panel-header">
+                        <h2>Atas e Assembleias</h2>
+                        <div class="panel-actions">
+                            <button class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Excel</button>
+                            <button id="cadastrar_ata" class="btn btn-primary"><i class="fas fa-file-contract"></i> Cadastrar</button>
+                        </div>
+                    </div>
+                    <div id="cadastro-popup-atas" class="popup-overlay" style="display:none;">
+                        <div class="popup-content">
+                            <h3>Cadastrar Ata/Assembleia</h3>
+                            <form id="form-cadastro-ata">
+                                <label for="nome-cadastro">Título:</label>
+                                <input type="text" id="titulo-cadastro" name="titulo" required>
+
+                                <label for="cpf-cadastro">Data:</label>
+                                <input type="text" id="data-cadastro" name="data" required>
+
+                                <label for="email-cadastro">E-mail:</label>
+                                <input type="email" id="email-cadastro" name="email" required>
+
+                                <label for="apto-cadastro">Número do Apartamento:</label>
+                                <input type="text" id="apto-cadastro" name="apartamento" required>
+
+                                <label for="bloco-cadastro">Bloco:</label>
+                                <input type="text" id="bloco-cadastro" name="bloco" required>
+
+                                <label for="imagem-cadastro">Foto de Perfil:</label>
+                                <input type="file" id="imagem-cadastro" name="imagem" accept="image/*">
+
+                                <div class="popup-actions">
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                    <button type="button" id="fechar-popup-atas" class="btn btn-outline-secondary">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Título</th>
+                                    <th>Data</th>
+                                    <th>Responsável</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Manutenção parquinho</td>
+                                    <td>29/07/2025</td>
+                                    <td>nelson lutierie petry</td>
+                                    <td class="actions-cell">
+                                        <button class="action-btn show-btn" aria-label="Visualizar Morador"><i class="fas fa-eye"></i></button><button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button><button class="action-btn download-btn" aria-label="Baixar Ata"><i class="fas fa-download"></i></button>    
+                                    </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <button class="pagination-arrow disabled">&laquo;</button>
+                        <button class="pagination-number active">1</button>
+                        <button class="pagination-number">2</button>
+                        <button class="pagination-number">3</button>
+                        <button class="pagination-number">4</button>
+                        <button class="pagination-number">5</button>
+                        <button class="pagination-number">6</button>
+                        <button class="pagination-arrow">&raquo;</button>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
@@ -189,6 +257,7 @@
         <p>&copy; 2025 Condomínio par 3. Todos os direitos reservados.</p>
     </footer>
     
-    <script src="../assets/js/pages/administracao/administracao.js"></script>
+<script src="../assets/js/pages/administracao/administracao.js"></script>
+
 </body>
 </html>

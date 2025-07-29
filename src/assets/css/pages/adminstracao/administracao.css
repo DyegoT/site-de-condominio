@@ -166,6 +166,10 @@ header h1 {
     min-height: 600px; /* ajuste conforme necessário */
 }
 
+.atas-panel {
+    min-height: 600px; /* ajuste conforme necessário */
+}
+
 .panel-header {
     background-color: var(--primary-color);
     color: white;
@@ -281,6 +285,14 @@ table th {
 
 .edit-btn {
     color: #007bff; /* Blue for edit */
+}
+
+.show-btn {
+    color: #007bff; /* Green for show */
+}
+
+.download-btn {
+    color: #28a745; /* Green for show */
 }
 
 .edit-btn:hover {

@@ -61,11 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 document.getElementById('cadastrar_morador').addEventListener('click', function() {
-    document.getElementById('cadastro-popup').style.display = 'flex';
+    document.getElementById('cadastro-popup-morador').style.display = 'flex';
 });
 
-document.getElementById('fechar-popup').addEventListener('click', function() {
-    document.getElementById('cadastro-popup').style.display = 'none';
+document.getElementById('fechar-popup-morador').addEventListener('click', function() {
+    document.getElementById('cadastro-popup-morador').style.display = 'none';
+});
+
+document.getElementById('cadastrar_ata').addEventListener('click', function() {
+    document.getElementById('cadastro-popup-atas').style.display = 'flex';
+});
+
+document.getElementById('fechar-popup-atas').addEventListener('click', function() {
+    document.getElementById('cadastro-popup-atas').style.display = 'none';
 });
 
 document.querySelectorAll('button[aria-label="Excluir Morador"]').forEach(btn => {
@@ -76,3 +84,6 @@ document.querySelectorAll('button[aria-label="Excluir Morador"]').forEach(btn =>
         }
     });
 });
+
+
+
