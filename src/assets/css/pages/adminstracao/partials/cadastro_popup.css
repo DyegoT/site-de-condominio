@@ -1,30 +1,555 @@
 .popup-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(3px); /* Efeito de blur no fundo */
 }
+
 .popup-content {
     background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    min-width: 300px;
-    max-width: 90vw;
+    padding: 2.5rem; /* Aumentado o padding para mais "respiro" */
+    border-radius: 12px; /* Aumentado o arredondamento das bordas */
+    min-width: 380px; /* Levemente aumentado */
+    max-width: 800px; /* Aumentado para acomodar melhor os campos */
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Sombra mais suave e proeminente */
+    position: relative;
+    animation: fadeInScale 0.3s ease-out forwards;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Tipografia mais moderna */
+    color: #333; /* Cor de texto padrão mais escura */
 }
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95); /* Animação de entrada mais suave */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.popup-content h3 {
+    text-align: center;
+    margin-bottom: 2rem; /* Mais espaço abaixo do título */
+    color: #2c3e50;
+    font-size: 1.8rem; /* Tamanho do título maior */
+    font-weight: 600; /* Mais negrito */
+}
+
+/* Estilos das Abas */
+.popup-tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem; /* Mais espaço abaixo das abas */
+    border-bottom: 1px solid #e0e0e0; /* Borda mais suave */
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 1rem 1.8rem; /* Aumentado padding */
+    font-size: 1.05rem; /* Levemente maior */
+    cursor: pointer;
+    color: #666; /* Cor mais suave */
+    font-weight: 500; /* Peso da fonte médio */
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 4px 4px 0 0; /* Arredondamento apenas nas bordas superiores */
+}
+
+.tab-button:hover:not(.active) {
+    color: #007bff; /* Azul padrão */
+    background-color: #f8f9fa; /* Fundo suave ao passar o mouse */
+}
+
+.tab-button.active {
+    color: #007bff; /* Azul padrão */
+    border-color: #007bff; /* Borda azul */
+    background-color: #ffffff; /* Fundo branco para a aba ativa */
+    font-weight: 600; /* Mais negrito para a aba ativa */
+}
+
+.tab-content {
+    display: none; /* Padrão: esconde todas as abas */
+    padding-top: 1.5rem; /* Mais padding superior */
+    /* Removido 'gap' e 'align-items' daqui para controle mais granular por seção */
+}
+
+.tab-content.active {
+    display: grid; /* Apenas a aba ativa é exibida como grid */
+}
+
+/* Campos de Formulário - Estilos Globais */
 .popup-content label {
     display: block;
-    margin-top: 1rem;
+    margin-bottom: 0.6rem; /* Espaçamento abaixo da label */
+    font-weight: 600; /* Labels mais destacadas */
+    color: #444; /* Cor mais escura */
+    font-size: 0.95rem; /* Tamanho da fonte da label */
 }
-.popup-content input[type="text"], .popup-content input[type="file"] {
+
+.popup-content input[type="text"],
+.popup-content input[type="email"],
+.popup-content input[type="file"],
+.popup-content input[type="number"],
+.popup-content input[type="tel"] {
     width: 100%;
-    margin-top: 0.5rem;
+    padding: 0.9rem 1.2rem; /* Aumentado o padding interno */
+    border: 1px solid #ced4da; /* Borda mais neutra */
+    border-radius: 8px; /* Mais arredondamento nas caixas de texto */
+    font-size: 1rem; /* Tamanho da fonte do texto dentro do input */
+    color: #495057; /* Cor do texto no input */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+    margin-bottom: 1rem; /* Adiciona um espaço padrão abaixo de cada input */
 }
-.popup-actions {
-    margin-top: 2rem;
+
+.popup-content input[type="text"]:focus,
+.popup-content input[type="email"]:focus,
+.popup-content input[type="file"]:focus,
+.popup-content input[type="number"]:focus,
+.popup-content input[type="tel"]:focus {
+    outline: none;
+    border-color: #80bdff; /* Borda azul mais clara ao focar */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra azul suave ao focar */
+}
+
+/* Hidden label for screen readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
+/* Campos de Dados Pessoais em duas colunas */
+#dados-pessoais {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem; /* Espaçamento entre os itens do grid */
+    align-items: start;
+}
+
+/* Garante que o email ocupe as duas colunas em dados pessoais */
+#dados-pessoais label[for="email-cadastro"],
+#dados-pessoais input[type="email"]#email-cadastro {
+    grid-column: 1 / -1;
+}
+
+/* Campos de Dados Auxiliares */
+#dados-auxiliares {
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 1.5rem 1rem; /* Espaçamento entre os itens do grid */
+    align-items: start; /* Alinha os itens ao topo */
+}
+
+/* Estilo para o grupo de checkbox + input de quantidade (Pets e Veículos) */
+.checkbox-line-group {
+    grid-column: 1 / -1; /* Ocupa as duas colunas */
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 1.5rem; /* Espaçamento entre o checkbox e o input de quantidade */
+    margin-bottom: 1rem; /* Espaço abaixo deste grupo */
+    margin-top: 0.5rem; /* Um pouco de espaço acima */
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 0; /* Resetar margens para controle pelo pai .checkbox-line-group */
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    accent-color: #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0; /* Previne que o checkbox encolha */
+    margin-bottom: 0; /* Remove a margem inferior padrão de inputs */
+}
+
+.checkbox-group label {
+    margin: 0; /* Resetar margens para controle pelo pai */
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+}
+
+.input-quantidade-wrapper {
+    flex-grow: 0; /* Não permite que o wrapper cresça muito */
+    width: 80px; /* Largura fixa para o input de quantidade */
+    display: flex; /* Para que o input ocupe 100% do wrapper */
+    align-items: center; /* Alinha o input verticalmente dentro do wrapper */
+}
+
+.input-quantidade-wrapper input[type="number"] {
+    padding: 0.6rem 0.8rem; /* Padding menor para input de número */
+    text-align: center; /* Centraliza o número */
+    width: 100%; /* Ocupa a largura total do seu wrapper */
+    margin-bottom: 0; /* Remove a margem inferior padrão */
+}
+
+/* Correção para campos "Nome Pet" e "Descrição Veículo" */
+/* Garante que a label e o input de descrição ocupem a largura total */
+#dados-auxiliares label[for="nome-pet-cadastro"],
+#dados-auxiliares input#nome-pet-cadastro {
+    grid-column: 1 / -1;
+}
+
+#dados-auxiliares label[for="raca-pet-cadastro"],
+#dados-auxiliares input#raca-pet-cadastro {
+    grid-column: 1 / -1;
+}
+
+#dados-auxiliares label[for="descricao-veiculo-cadastro"],
+#dados-auxiliares input#descricao-veiculo-cadastro {
+    grid-column: 1 / -1; /* Força a descrição a ocupar a largura total */
+}
+
+/* Alinhamento dos campos de veículo (placa, modelo, cor) em duas colunas */
+#dados-auxiliares label[for="placa-veiculo-cadastro"] {
+    grid-column: 1 / 2; /* Inicia na primeira coluna */
+}
+
+#dados-auxiliares input#placa-veiculo-cadastro {
+    grid-column: 2 / 3; /* Inicia na segunda coluna */
+}
+
+#dados-auxiliares label[for="modelo-veiculo-cadastro"] {
+    grid-column: 1 / 2;
+}
+
+#dados-auxiliares input#modelo-veiculo-cadastro {
+    grid-column: 2 / 3;
+}
+
+#dados-auxiliares label[for="cor-veiculo-cadastro"] {
+    grid-column: 1 / 2;
+}
+
+#dados-auxiliares input#cor-veiculo-cadastro {
+    grid-column: 2 / 3;
+}
+
+
+/* File Upload Wrapper em uma linha no layout de grid */
+.file-upload-wrapper {
+    grid-column: 1 / -1; /* Ocupa a largura total */
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.file-upload-wrapper input[type="file"] {
+    flex-grow: 1;
+    border: 1px dashed #a0aec0;
+    padding: 0.9rem 1.2rem;
+    border-radius: 8px;
+    background-color: #fefefe;
+    cursor: pointer;
+    margin-bottom: 0; /* Remove a margem inferior padrão de inputs */
+}
+
+.file-upload-wrapper .btn-outline-secondary {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    border: 1px solid #adb5bd;
+    color: #6c757d;
+    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.file-upload-wrapper .btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+    color: #495057;
+    border-color: #5a6268;
+}
+
+/* Estilos para Upload de Documentos (Aba Documentos) */
+#documentos {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem; /* Garante gap para esta aba também */
+    align-items: start;
+}
+
+.document-upload-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 0; /* Controlado pelo gap do grid */
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+#documentos .document-upload-container:last-child {
+    grid-column: 2 / 3;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.document-preview {
+    width: 100%;
+    height: 150px;
+    background-color: #f1f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px dashed #ccc;
+}
+
+.document-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.document-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.document-actions input[type="file"] {
+    display: none;
+}
+
+.document-actions .btn {
+    flex-grow: 1;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.document-actions .upload-btn {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid #28a745;
+}
+
+.document-actions .upload-btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.document-actions .remove-btn {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.document-actions .remove-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Botões do Pop-up (Salvar/Cancelar) */
+.popup-actions {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1.2rem;
     justify-content: flex-end;
+    border-top: 1px solid #eee;
+    padding-top: 1.8rem;
+}
+
+.popup-actions .btn {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    font-weight: 500;
+}
+
+.popup-actions .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+.popup-actions .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    color: #343a40;
+    border-color: #5a6268;
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.1);
+}
+
+/* Responsividade Aprimorada para o Pop-up */
+@media (max-width: 768px) {
+    .popup-content {
+        padding: 1.5rem;
+        width: 95%;
+        max-width: unset;
+        border-radius: 10px;
+    }
+
+    .popup-content h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .popup-tabs {
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+
+    .tab-button {
+        flex-basis: 100%;
+        margin-bottom: 0.5rem;
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+    }
+
+    .tab-content {
+        grid-template-columns: 1fr;
+        padding-top: 1rem;
+        gap: 1rem;
+    }
+
+    .popup-content label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .popup-content input[type="text"],
+    .popup-content input[type="email"],
+    .popup-content input[type="file"],
+    .popup-content input[type="number"],
+    .popup-content input[type="tel"] { /* Adicionado input type tel */
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        margin-bottom: 0.8rem; /* Espaço abaixo dos inputs em mobile */
+    }
+
+    /* Ajustes específicos para mobile para o grupo de checkbox + quantidade */
+    .checkbox-line-group {
+        flex-direction: column; /* Empilha o checkbox e o input de quantidade */
+        align-items: flex-start; /* Alinha à esquerda quando empilhado */
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .checkbox-group {
+        width: 100%; /* Ocupa a largura total */
+    }
+
+    .input-quantidade-wrapper {
+        width: 100%; /* Ocupa a largura total em mobile */
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        margin-bottom: 0;
+    }
+
+    .checkbox-group label {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+
+    .file-upload-wrapper {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .file-upload-wrapper input[type="file"] {
+        margin-bottom: 0;
+    }
+
+    .file-upload-wrapper .btn-outline-secondary {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+
+    #documentos {
+        grid-template-columns: 1fr;
+    }
+
+    #documentos .document-upload-container:last-child {
+        max-width: unset;
+        margin: 0;
+    }
+
+    .document-upload-container {
+        padding: 1rem;
+        gap: 1rem;
+        border-radius: 8px;
+    }
+
+    .document-preview {
+        height: 100px;
+        border-radius: 6px;
+    }
+
+    .document-actions .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+
+    .popup-actions {
+        margin-top: 1.8rem;
+        padding-top: 1.2rem;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .popup-actions .btn {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 6px;
+    }
 }
