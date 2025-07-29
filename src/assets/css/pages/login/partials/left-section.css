@@ -4,5 +4,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--secondary-color);
+    background: var(--sidebar-bg);
 }

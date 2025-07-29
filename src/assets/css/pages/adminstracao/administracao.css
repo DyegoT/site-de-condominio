@@ -162,7 +162,9 @@ header h1 {
 }
 
 /* Residents Panel specific styling */
-
+.residents-panel {
+    min-height: 600px; /* ajuste conforme necessário */
+}
 
 .panel-header {
     background-color: var(--primary-color);
