@@ -59,19 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        document.getElementById('toggle-theme').addEventListener('click', function() {
-            document.body.classList.toggle('tema-escuro');
-            // Troca o ícone do botão
-            const icon = this.querySelector('i');
-            if(document.body.classList.contains('tema-escuro')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-            document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const cadastrarMoradorBtn = document.getElementById('cadastrar_morador');
             const cadastroPopup = document.getElementById('cadastro-popup');
             const fecharPopupBtn = document.getElementById('fechar-popup');

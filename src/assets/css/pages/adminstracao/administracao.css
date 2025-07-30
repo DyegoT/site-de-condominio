@@ -11,33 +11,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
-body.tema-escuro {
-    background: #23272f;
-    color: #f1f1f1;
-}
-
-body.tema-escuro .container,
-body.tema-escuro .popup-content {
-    background: #2c313a;
-    color: #f1f1f1;
-}
-
-body.tema-escuro .btn,
-body.tema-escuro .panel-header {
-    background: #23272f;
-    color: #f1f1f1;
-}
-
-body.tema-escuro thead{
-    background-color: #23272f;
-    color: var(--primary-color);
-}
-body.tema-escuro table {
-    background-color: var(--sidebar-bg);
-    color: #f1f1f1;
-}
-
 /* Header */
 header {
     background-color: var(--primary-color);
