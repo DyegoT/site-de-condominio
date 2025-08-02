@@ -328,6 +328,9 @@
     </footer>
     
 <script src="../assets/js/pages/administracao/administracao.js"></script>
+<?php
+    include '../config/config.php';
+?>
 
 </body>
 </html>
