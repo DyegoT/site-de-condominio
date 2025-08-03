@@ -196,66 +196,7 @@
                                         <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Quetsia Rodrigues V</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>101 / F</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Saimon Emanuel Petry</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>202 / E</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Edilena Rodrigues</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>303 / D</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Nilson Ferreira D Paula</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>502 / C</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Igor Matheus Lopes</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>203 / A</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Alehandro R V Dall</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>403 / C</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -274,22 +215,35 @@
                     <div id="cadastro-popup-atas" class="popup-overlay" style="display:none;">
                         <div class="popup-content">
                             <h3>Cadastrar Ata/Assembleia</h3>
+                            <div class="popup-tabs">
+                                <button class="tab-button active" data-tab="dados-ata">Dados da ata/assembleia</button>
+                                <button class="tab-button" data-tab="documentos-ata">Documentos ata/assembleia</button>
+                            </div>
                             <form id="form-cadastro-ata">
-                                <label for="titulo-cadastro">Título:</label>
-                                <input type="text" id="titulo-cadastro" name="titulo" required>
-
-                                <label for="data-cadastro">Data:</label>
-                                <input type="text" id="data-cadastro" name="data" required>
-
-                                <label for="responsavel-cadastro">Responsável:</label>
-                                <input type="text" id="responsavel-cadastro" name="responsavel" required>
-
-                                <label for="important-files-cadastro">Arquivos importantes:</label>
-                                <input type="file" id="important-files-cadastro" name="important files" accept="image/*">
-
+                                <div id="dados-ata" class="tab-content active">
+                                    <label for="titulo-cadastro">Título:</label>
+                                    <input type="text" id="titulo-cadastro" name="titulo" required>
+                                    <label for="data-cadastro">Data:</label>
+                                    <input type="text" id="data-cadastro" name="data" required>
+                                    <label for="responsavel-cadastro">Responsável:</label>
+                                    <input type="text" id="responsavel-cadastro" name="responsavel" required>
+                                </div>
+                                <div id="documentos-ata" class="tab-content">
+                                    <label>Carregar arquivo de ata/assembleia</label>
+                                    <div class="document-upload-container">
+                                        <div class="document-preview">
+                                            <img src="https://via.placeholder.com/150x100?text=Preview" alt="Preview Ata/Assembleia">
+                                        </div>
+                                        <div class="document-actions">
+                                            <input type="file" id="arquivo-ata" name="arquivo-ata" accept=".pdf, .doc, .docx, .txt">
+                                            <button type="button" class="btn btn-outline-primary upload-btn"><i class="fas fa-upload"></i> Upload</button>
+                                            <button type="button" class="btn btn-outline-danger remove-btn"><i class="fas fa-trash"></i> Remover</button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="popup-actions">
-                                    <button type="submit" class="btn btn-primary">Salvar</button>
                                     <button type="button" id="fechar-popup-atas" class="btn btn-outline-secondary">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
                                 </div>
                             </form>
                         </div>
