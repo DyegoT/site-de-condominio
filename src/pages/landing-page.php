@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome do Condomínio - Seu Lar Perfeito</title>
+    <title>Par 3 - Seu Lar Perfeito</title>
     <link rel="stylesheet" href="../assets/css/pages/landing-page/landing-page.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -24,15 +24,15 @@
 
     <section id="hero" class="hero-section">
         <div class="hero-content">
-            <h1>Viva o Sonho no Nome do Condomínio</h1>
+            <h1>Viva o Sonho no Par 3</h1>
             <p>Conforto, segurança e lazer em um só lugar. Encontre o lar perfeito para sua família.</p>
         </div>
     </section>
 
     <section id="about" class="about-section">
         <div class="container">
-            <h2>Sobre o Nome do Condomínio</h2>
-            <p>O Nome do Condomínio é um empreendimento único, projetado para oferecer a você e sua família uma qualidade de vida excepcional. Localizado em [Cidade/Bairro], combinamos a tranquilidade da natureza com a conveniência da cidade.</p>
+            <h2>Sobre o Par 3</h2>
+            <p>O Par 3 é um empreendimento único, projetado para oferecer a você e sua família uma qualidade de vida excepcional. Localizado em Samambaia, combinamos a tranquilidade da natureza com a conveniência da cidade.</p>
             <p>Nossas unidades foram cuidadosamente planejadas para maximizar o espaço e o conforto, com acabamentos de alta qualidade. Desfrute de ambientes amplos e iluminados, perfeitos para criar memórias inesquecíveis.</p>
         </div>
     </section>
