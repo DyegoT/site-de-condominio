@@ -28,7 +28,7 @@
                         <span class="sidebar-title"><i class="fas fa-cog"></i> Administração</span>
                         <ul class="nested-menu">
                             <li><a href="#moradores" class="active"><i class="fas fa-users"></i> Moradores</a></li>
-                            <li><a href="#atas" class="active"><i class="fas fa-file-contract"></i>Atas e Assembleias</a></li>
+                            <!--<li><a href="#atas" class="active"><i class="fas fa-file-contract"></i>Atas e Assembleias</a></li>-!-->
                         </ul>
                     </li>
                     
@@ -54,7 +54,7 @@
                                 <button class="tab-button" data-tab="dados-auxiliares">Dados Auxiliares</button>
                                 <button class="tab-button" data-tab="documentos">Documentos</button>
                             </div>
-                            <form id="form-cadastro-morador">
+                            <form id="form-cadastro-morador" action="salvar_morador.php" method="POST" enctype="multipart/form-data">
                                 <div id="dados-pessoais" class="tab-content active">
                                     <label for="nome-cadastro">Nome:</label>
                                     <input type="text" id="nome-cadastro" name="nome" required>
@@ -186,17 +186,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Nelson Lutiere Petry</td>
-                                    <td>101.189.300-00</td>
-                                    <td>nelson@gmail.com</td>
-                                    <td>701 / B</td>
-                                    <td class="actions-cell">
-                                        <button class="action-btn delete-btn" aria-label="Excluir Morador"><i class="fas fa-trash-alt"></i></button>
-                                        <button class="action-btn edit-btn" aria-label="Editar Morador"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                
+                                <?php
+                                // Inclui o arquivo de conexão com o banco de dados
+                                include 'config.php';
+
+                                // Query para selecionar todos os moradores
+                                $sql = "SELECT  id ,nome, cpf, email, apartamento, bloco FROM moradores";
+                                $result = $conn->query($sql);
+
+                                // Verifica se a query retornou resultados
+                                if ($result->num_rows > 0) {
+                                    // Loop através de cada linha de resultado
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . htmlspecialchars($row["nome"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row["cpf"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
+                                        echo "<td>" . htmlspecialchars($row["apartamento"]) . " / " . htmlspecialchars($row["bloco"]) . "</td>";
+                                        echo "<td class='actions-cell'>";
+                                        echo "<a href='excluir_morador.php?id=" . $row["id"] . "' class='action-btn delete-btn' aria-label='Excluir Morador'><i class='fas fa-trash-alt'></i></a>";
+                                        echo "<a href='editar_morador.php?id=" . $row["id"] . "' class='action-btn edit-btn' aria-label='Editar Morador'><i class='fas fa-edit'></i></a>";
+                                        echo "</td>";
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    // Exibe uma mensagem se não houver moradores cadastrados
+                                    echo "<tr><td colspan='5'>Nenhum morador encontrado.</td></tr>";
+                                }
+
+                                // Fecha a conexão com o banco de dados
+                                $conn->close();
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -224,7 +244,7 @@
                                     <label for="titulo-cadastro">Título:</label>
                                     <input type="text" id="titulo-cadastro" name="titulo" required>
                                     <label for="data-cadastro">Data:</label>
-                                    <input type="text" id="data-cadastro" name="data" required>
+                                    <input type="date" id="data-cadastro" name="data" required>
                                     <label for="responsavel-cadastro">Responsável:</label>
                                     <input type="text" id="responsavel-cadastro" name="responsavel" required>
                                 </div>
@@ -281,10 +301,6 @@
         <p>&copy; 2025 Condomínio par 3. Todos os direitos reservados.</p>
     </footer>
     
-<script src="../assets/js/pages/administracao/administracao.js"></script>
-<?php
-    include '../config/config.php';
-?>
-
+    <script src="../assets/js/pages/administracao/administracao.js"></script>
 </body>
 </html>

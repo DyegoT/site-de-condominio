@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });     
+
 document.addEventListener('DOMContentLoaded', function() {
     const cadastrarMoradorBtn = document.getElementById('cadastrar_ata');
     const cadastroPopup = document.getElementById('cadastro-popup-atas');
